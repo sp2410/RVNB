@@ -1,5 +1,11 @@
 class Changetypeofperhours < ActiveRecord::Migration[5.1]
-  def change
-  	change_column :listings, :rateperhour, :integer
-  end
+  # def change
+  # 		def up
+	 #    	change_column :listings, :rateperhour, :integer
+		# end
+		# def down
+		# 	change_column :listings, :rateperhour, :string
+		# end
+
+  # end
 end

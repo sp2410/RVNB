@@ -4,11 +4,11 @@ class CreateListings < ActiveRecord::Migration[5.1]
       t.string :title
       t.string :description
       t.string :year
-      t.string :length
-      t.string :sleeps
-      t.string :rateperhour
+      t.integer :length
+      t.integer :sleeps
+      t.integer :rateperhour
       t.string :vehicletype
-      t.string :rentalminimum
+      t.integer :rentalminimum
       t.float :latitude
       t.float :longitude
       t.string :city
