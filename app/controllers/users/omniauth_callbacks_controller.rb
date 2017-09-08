@@ -16,7 +16,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 			p @user.errors
 			session["devise.facebook_data"] = request.env["omniauth.auth"]
 			redirect_to new_user_registration_url
-			flash[:notice] = "Your Facebook profile is not verified. We can't use it to sign you up. Please fill up the forms below"
+			flash[:notice] = "Your Facebook profile is not verified. We can't use to sign you up. Please fill up the forms below"
 		end
 	end
 
