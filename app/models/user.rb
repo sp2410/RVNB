@@ -32,7 +32,11 @@ class User < ApplicationRecord
         else
           user.name = "user#{auth.uid}"
         end   		
-    		user.image = auth.info.image # assuming the user model has an image
+
+        if auth.info.image != nil
+          user.image = auth.info.image
+        end
+    		 # assuming the user model has an image
   		end
 	end
 
