@@ -27,7 +27,11 @@ class User < ApplicationRecord
     		user.email = auth.info.email
     		user.encrypted_password = Devise.friendly_token[0,20]
 
-    		user.name = auth.info.email.split("@")[0]  # assuming the user model has a name
+        if auth.info.email != nil
+          user.name = auth.info.email.split("@")[0]  # assuming the user model has a name
+        else
+          user.name = "user#{auth.uid}"
+        end   		
     		user.image = auth.info.image # assuming the user model has an image
   		end
 	end
