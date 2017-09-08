@@ -1,0 +1,10 @@
+<%= bootstrap_form_for [@listing, Speck.new]  do |f| %>   
+  
+  <div class="field">    
+    <%= f.text_field :name, id: :speck_name %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Create New Speck", class: "btn btn-info", style: "background-color: #E20049; border: #e20049;"  %>
+  </div>
+<% end %>

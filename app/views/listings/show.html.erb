@@ -1,0 +1,669 @@
+<div class = "col-sm-12 col-md-12 col-lg-12">
+  
+    <div class="slideshow-container" id = "showcase" >
+
+                          <%- if @listing.imagefront.present? -%>
+                            <div class="mySlides" style = "height: 40em;">                          
+                              <img src=<%= @listing.imagefront.url if @listing.imagefront.present? %>>
+                            </div>
+                          <% end %>
+
+                          <%- if @listing.imageback.present? -%>
+                            <div class="mySlides"  style = "height: 40em;">
+                              <img src=<%= @listing.imageback.url if @listing.imageback.present? %> style="width:100%">
+                            </div>
+                          <% end %>
+
+                          <%- if @listing.imageleft.present? -%>  
+                              <div class="mySlides"  style = "height: 40em;">
+                              <img src=<%= @listing.imageleft.url if @listing.imageleft.present? %> style="width:100%">
+                            </div>
+                          <% end %>
+
+                          <%- if @listing.imageright.present? -%>  
+                            <div class="mySlides"  style = "height: 40em;">
+                              <img src=<%= @listing.imageright.url if @listing.imageright.present? %> style="width:100%">
+                            </div>
+                          <% end %>
+
+                          <%- if @listing.interiorfront.present? -%>  
+                              <div class="mySlides"  style = "height: 40em;">
+                              <img src=<%= @listing.interiorfront.url if @listing.interiorfront.present? %> style="width:100%">
+                            </div>
+                          <% end %>
+
+                         
+                          <a class="prev">&#10094;</a>
+                          <a class="next">&#10095;</a>
+                            
+
+                          <div style="text-align:center; margin-top: -35px;">
+                            <%- if @listing.imagefront.present? -%>
+                              <span class="dot"></span>
+                             <% end %>
+                             <%- if @listing.imageback.present? -%>
+                              <span class="dot" ></span>
+                             <% end %>
+                             <%- if @listing.imageleft.present? -%>
+                              <span class="dot" ></span>
+                             <% end %>
+                             <%- if @listing.imageright.present? -%>
+                               <span class="dot"></span>
+                             <% end %>
+                             <%- if @listing.interiorfront.present? -%>
+                               <span class="dot"></span>
+                             <% end %>
+                          </div>
+    </div> 
+
+
+  
+  <div class = "col-sm-12 col-md-12 col-lg-12" style = "text-align: center; margin-top: 20px;">
+
+      <% if user_is_listing_owner(@listing) %>
+          <strong><p style ="font-size: 15px; color: #e20049; overflow-x:hidden; text-align: center;"> THE MORE YOU SHARE THE MORE YOU EARN! </p></strong>
+      <% else %>
+        <strong><p style ="font-size: 15px; color: #e20049; overflow-x:hidden; text-align: center;"> SHARE WITH YOUR FRIENDS! </p></strong>
+      <% end %>
+
+      <%= social_share_button_tag(@listing.title, :url => "www.rvnb.com/#{@listing.id}", :image => "#{@listing.imagefront if @listing.imagefront }", desc: "#{@listing.description}") %>
+          
+          <hr>
+    </div>
+
+  
+
+  
+
+  <div class = "col-sm-12 col-md-6 col-lg-6">
+    <div class="description">
+                          <div class="row">
+                            <div class="col-sm-12">
+
+                              <div class="col-sm-1 col-lg-1">                                    
+                              </div>
+
+
+                              <!-- <div class = "w3-panel w3-card-2">  -->
+                                <div class="col-sm-6 col-lg-10" >   
+
+                                    <div class="col-sm-12" style = "background-color: #fff;">                             
+
+                                        <div class="col-sm-12 col-lg-12" style = "margin-bottom: 10px; padding: 0px;"> 
+
+                                          <div class="col-sm-8" style = "padding: 0px;"> 
+                                            <h3 class="row text-center" style = "color:  #e20049; font-size: 2.5em;"><strong><%= @listing.title.upcase %></strong></h3>
+                                          </div>
+
+                                          <div class="col-sm-2">        
+                                            <% if @listinguser.image %>
+                                                <img src= <%= @listinguser.image if @listinguser.image.present? %> class= "img-circle">
+                                              <% else %>
+                                                <img src= "https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png" class= "img-circle">
+                                            <% end %>
+                                          </div>
+
+                                          <div class="col-sm-2"> 
+                                          
+                                          </div>
+
+                                        </div>
+
+                                         <div class="col-sm-6 text-center">
+                                            <p><strong><span class="glyphicon glyphicon-map-marker"></span> Location: <%= @listing.city if  @listing.city %></strong></p>
+                                         </div>
+
+                                         <div class="col-sm-6 text-center">
+                                            <p ><strong><span class="glyphicon glyphicon-star"></span>
+                                            Ratings: Not available yet</strong></p>
+                                         </div>
+
+
+                                        <div class="col-lg-12">
+
+                                            <%if user_is_listing_owner(@listing) %>
+                                                <div class="col-sm-12 text-center">
+                                                    <%= link_to 'Edit', edit_listing_path(@listing), class: "btn btn-info btn-xs", style: "background-color: #E20049; border: #e20049;"  %>
+                                                    <%= link_to 'Destroy', @listing, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-info btn-xs", style: "background-color: #E20049; border: #e20049;"  %>
+                                                </div>
+                                              <% end %>           
+                                        </div>
+
+                                    </div>
+
+                                     <div class="col-sm-12 text-center">
+                                          <hr>
+                                        </div>
+
+       
+                                    <div class="col-sm-12 " style = "background-color: #fff; padding: 0px;">
+
+
+                                         <p style ="margin: 0px;font-size: 20px; color: #e20049;"><span class="glyphicon glyphicon-fire"></span> From <%= @listing.rateperhour %><span class="glyphicon glyphicon-usd" aria-hidden="true"></span> per hour 
+
+                                          <br>
+                                          <hr>
+                                          <br>
+
+
+                                         <p style ="margin: 0px;font-size: 20px; "><span class="glyphicon glyphicon-stop"></span> Minimum <%= @listing.rentalminimum %> hours - <%= @listing.maximum_guest_allowed %> people </p>
+                                         <br>
+                                          <hr>
+                                          <br>
+
+                                               
+
+                                          <h6 class="row text-center" style = "color:  #e20049; padding: 10px; font-size: 2em; text-align: left;"><strong>ABOUT</strong></h6>
+
+                                          <div class="col-sm-12 text-center" style = " padding: 0px; overflow-y: scroll; max-height: 700px; text-align: left;">
+
+                                                <p style ="margin: 0px;font-size: 15px; color: #e20049;; overflow-x:hidden;"> (Click Here and Scroll Down to Read More) </p>
+
+                                                <br>
+
+                                              <p style ="margin: 0px;font-size: 15px; overflow-x:hidden;"><%= simple_format(@listing.description) %></p>
+
+                                          </div>
+
+                                          <br>
+                                                                                                                          
+
+                                        </div>
+                                         <div class="col-sm-12 text-center">
+                                              <hr>
+                                          </div>
+
+                                        <div class="col-sm-12 " style = "background-color: #fff; padding: 0px;">
+
+                                          <h6 class="row text-center" style = "font-size: 2em;text-align: left;color: #e20049;"><strong>DETAILS</strong></h6>
+
+                                          <div class="col-sm-6">
+                                            <p><strong><span class="glyphicon glyphicon-calendar"></span>
+                                               Year: <%= @listing.year %></strong></p>
+                                          </div>
+
+                                          <div class="col-sm-6">
+                                            <p ><strong><span class="glyphicon glyphicon-user"></span>
+                                               Sleeps: <%= @listing.sleeps %> Person</strong></p>
+                                          </div>
+                                         
+
+                                          <div class="col-sm-6">
+                                            <p ><strong><span class="glyphicon glyphicon-certificate"></span>
+                                               Guest Charges: <%= @listing.extra_guest_charges %> $</strong></p>
+                                          </div>
+
+                                          <!-- <div class="col-sm-6">
+                                            <p ><strong><span class="glyphicon glyphicon-remove"></span>
+                                               Cancellation: Anytime</strong></p>
+                                          </div> -->
+
+                                          <div class="col-sm-6">
+                                            <p ><strong><span class="glyphicon glyphicon-resize-full"></span>
+                                               Length: <%= @listing.length %> Feet</strong></p>
+                                          </div>
+
+                                           <div class="col-sm-6">
+                                            <p ><strong><span class="glyphicon glyphicon-user"></span>
+                                              Included Number: <%= @listing.maximum_guest_allowed %> People</strong></p>
+                                          </div>
+
+
+                                        </div>
+
+                                        <div class="col-sm-12 text-center">
+                                              <hr>
+                                        </div>
+
+                                        <div class="col-sm-12 " style = "background-color: #fff; padding: 0px;">
+
+                                            <h6 class="row text-center" style = "font-size: 2em; text-align: left;color: #e20049;"><strong>SPECS</strong></h6>
+                                              <div class="col-sm-12">
+		                                              <div class="col-sm-12">
+		                                              <% if !@listingspecks.empty? %>
+		                                                <% @listingspecks.each do |k| %>
+		                                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"><Strong><p style = "text-align:left;" >&#x2714 <%= k.name %></p></Strong></div>
+		                                                <% end %>                                        
+		                                              <% end %>                                                  
+		                                              </div>                                                
+                                              </div>
+
+                                              <%if user_is_listing_owner(@listing) %>           
+                                                    <div class="col-sm-12 text-center">
+                                                      <%= link_to 'Add Specs', new_listing_speck_path(@listing.id), class: "btn btn-info btn-xs", style: "background-color: #E20049; border: #e20049;"  %>
+                                                    </div>
+                                                  <% end %>                                                
+
+
+                                        </div>
+
+                                        <div class="col-sm-12 text-center">
+                                          <hr>
+                                        </div>
+
+
+
+                                        <!-- <div class="col-sm-12">
+                                        <p style ="color:  #e20049;"><strong><span class="glyphicon glyphicon-wrench"></span>
+                                               User:<%= @listinguser.email %> </strong></p>
+                                          
+                                        </div> -->
+
+                                                                  
+                                    </div> 
+
+
+                                <!-- </div> -->
+                             
+                            </div>
+
+                                <div class="col-sm-1 col-lg-1">
+                                    
+                                </div>
+                           
+                            </div>                  
+    </div>
+  </div>
+
+
+<div class = "col-sm-12 col-md-6 col-lg-6" > 
+       
+  <div class = "w3-panel w3-card-2"> 
+    <div class="col-sm-12 " >
+      <h6 class="row text-center" style = "color:  #e20049; padding: 10px; font-size: 2em; text-align: left;"><strong>CALENDER</strong></h6>
+
+        <div class="col-sm-12" style = "overflow-x: scroll;background-color: #fff; ">
+        	<% if !@listingavailabilities.empty? %>
+
+            <%= month_calendar events: @listingavailabilities do |date, meetings| %>
+              
+              <%= date.day %>
+
+              <% meetings.each do |meeting| %>
+
+                <% if !Availability.isunavilable(meeting, date) %>
+                    <p style = "font-size: 5px;">
+                      <%= link_to 'Request', new_listing_availability_reservation_path(@listing.id, meeting.id, :date => date), target: :_blank , class: "btn btn-info btn-xs", style: "background-color: #E20049; border: #e20049;" %>  
+                    </p>
+                <% end %>
+
+              <% end %>
+
+            <% end %>		
+
+        	<% else %>
+
+          <strong><p style = "font-size: 1em; text-align: center; color: #E20049;">OOPS! NO AVAILABILITY ADDED YET!</p></strong>
+
+          <% end %>
+
+        </div>
+    </div>
+  </div>
+
+<div class="col-sm-12 text-center">
+              <hr>
+          </div>
+
+    <%if user_is_listing_owner(@listing) %>
+            
+            <div class="col-sm-12 text-center" style = "background-color: #fff;">
+
+              <h6 class="row text-center" style = "color:  #e20049; padding: 10px; font-size: 2em; text-align: left;"><strong> AVAILABILITIES</strong></h6>
+                 <% @listingavailabilities.each do |i| %>
+                    Start Date: <%= i.startdate.strftime("%B %d, %Y") %> - End Date: <%= i.enddate.strftime("%B %d, %Y") %><br>
+                  <% end %>
+
+            
+
+
+            <div class="col-sm-12 text-center">
+            	<%= link_to 'Add Availability', new_listing_availability_path(@listing.id), class: "btn btn-info btn-xs", style: "background-color: #E20049; border: #e20049;"  %>	
+            </div>
+
+        </div>
+      
+    <% end %>
+
+    <div class="col-sm-12 text-center">
+              <hr>
+          </div>
+
+    <div class="col-sm-12 text-center" style = "background-color: #fff;">
+      <h6 class="row text-center" style = "color:  #e20049; padding: 10px; font-size: 2em; text-align: left;"><strong>ABOUT OWNER</strong></h6>
+            
+
+      <div class="col-sm-12 text-center" >
+
+          <div class="col-sm-2">        
+             <% if @listinguser.image %>
+              <img src= <%= @listinguser.image if @listinguser.image.present? %> class= "img-circle">
+            <% else %>
+              <img src= "https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png" class= "img-circle">
+            <% end %>
+          </div>
+          <br>
+
+          <div class="col-sm-7" style = "text-align: left;">
+
+            <% if @listinguser.name %>
+              <strong><p >Meet <%= @listinguser.name if @listinguser.name %>  </p></strong>
+            <% else %>
+              <strong><p >Meet <%= @listinguser.email.split('@')[0] %></p></strong>
+            <% end %>
+
+            <strong><p >Member Since: <%= @listinguser.created_at.strftime("%B %d, %Y") if @listinguser.created_at %></p></strong>
+
+          </div>
+
+          <div class="col-sm-3">
+
+          </div>                 
+      </div>
+
+       <!-- <div class="col-sm-12 text-center">
+              <hr>
+          </div>
+ -->
+
+       <!-- <div class="col-sm-12 text-center" style = "background-color: #fff;">
+       
+          <div class="col-sm-6" >     
+              <p style ="color: #E20049;"><strong><span class="glyphicon glyphicon-ok"></span> Email Verified</strong></p>
+          </div>
+          <div class="col-sm-6" >
+            <p style ="color: #E20049;"><strong><span class="glyphicon glyphicon-ok"></span> Phone Verified</strong></p>
+          </div>
+          <div class="col-sm-6" >               
+            <p style ="color: #E20049;"><strong><span class="glyphicon glyphicon-ok"></span> Facebook Verified</strong></p>
+          </div>
+          <div class="col-sm-6" >
+            <p style ="color: #E20049;"><strong><span class="glyphicon glyphicon-ok"></span> Google Verified</strong></p>
+          </div>      
+      </div> -->
+
+
+    </div>
+
+
+    <div class="col-sm-12 text-center">
+      <hr>
+    </div>
+
+  
+
+  <div class="col-sm-12 text-center" style = ; overflow-y: scroll; max-height: 700px;">
+      <h6 class="row text-center" style = "color:  #e20049; padding: 10px; font-size: 2em; text-align: left;"><strong>REVIEWS</strong></h6>
+
+      <% @listingavailabilities.each do |availability| %>
+        <% availability.reservations.each do |reservation| %>
+
+        <% if allowreviews(reservation) %>
+
+         <div class="col-sm-12 text-center">
+            <%= link_to 'Add Review', new_listing_availability_reservation_review_path(@listing.id, availability.id, reservation.id ), class: "btn btn-info btn-xs" %> 
+          </div>
+          
+        <% end %>
+
+
+          <% reservation.reviews.each do |review| %>
+
+              <% @reviewuser = getuser(review.reviewerid) %>
+                
+                <div class="col-sm-12 text-center" >
+
+                    <div class="col-sm-2">        
+                       <% if @reviewuser.image %>
+                        <img src= <%= @reviewuser.image if @reviewuser.image.present? %> class= "img-circle">
+                      <% else %>
+                        <img src= "https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/nopictures1.png" class= "img-circle">
+                      <% end %>
+                    </div>
+
+                    <div class="col-sm-7" style = "text-align: left;">
+
+                      <% if @reviewuser.name %>
+                        <strong><p >By <%= @reviewuser.name if @reviewuser.name %>  </p></strong>
+                      <% else %>
+                        <strong><p >By <%= @reviewuser.email.split('@')[0] %></p></strong>
+                      <% end %>
+
+                      <strong><p >Member Since: <%= @reviewuser.created_at.strftime("%B %d, %Y") if @reviewuser.created_at %></p></strong>
+
+                    </div>
+
+                    <div class="col-sm-3">
+
+                    </div>    
+
+                </div>
+                
+
+              <div class="col-sm-12 text-center" style = ;">
+
+                  <div class="col-sm-6" >     
+                      <p style ="color: #E20049;"><strong>Accuracy: <%= review.accuracy %></strong></p>
+                  </div>
+                  <div class="col-sm-6" >
+                    <p style ="color: #E20049;"><strong>Communication: <%= review.communication %></strong></p>
+                  </div>
+                  <div class="col-sm-6" >               
+                    <p style ="color: #E20049;"><strong>Cleanliness: <%= review.cleanliness %></strong></p>
+                  </div>              
+                  <div class="col-sm-6" >
+                    <p style ="color: #E20049;"><strong>Check In: <%= review.checkin %></strong></p>
+                  </div>
+                  <div class="col-sm-6" >
+                    <p style ="color: #E20049;"><strong>Owners Behaviour: <%= review.owners_behaviour %></strong></p>
+                  </div>
+                  <div class="col-sm-6" >
+                    <p style ="color: #E20049;"><strong>Value for Money: <%= review.valueformoney %></strong></p>
+                  </div>                                
+              </div>
+
+              <div class="col-sm-12 text-center" style =;">    
+                <p style ="color: black;"><strong><%= review.comment %></strong></p>                  
+              </div>
+
+               <div class="col-sm-12 text-center">
+                      <hr>
+                </div>
+
+        <% end %>
+         
+        <% end %>
+      <% end %>    
+
+  </div> 
+
+
+</div>
+
+
+<div class = "w3-panel w3-card-2"> 
+
+  <div class = "col-sm-12 col-md-12 col-lg-12" id = "showmap">    
+    <%= render 'listings/listingonmap'%>
+  </div> 
+
+</div>
+
+
+
+<%if user_is_listing_owner(@listing) %>  
+    <!-- <div class = "w3-panel w3-card-2" >   -->
+
+     <div class="col-sm-12 text-center">
+      <hr>
+    </div>
+
+       <div class = "col-sm-12 col-md-12 col-lg-12" style = "background-color: #fff;">
+            
+         <h4 class="row text-center" style = "color:  #e20049; padding: 10px; font-size: 2em;"><strong>RESERVATION REQUESTS</strong></h4>
+
+                  <div class = "col-sm-2">    
+                    <p style = "text-align: center; font-size: 12px;">Booking Date(YYYY-MM-DD)</p>
+                  </div>           
+                  <div class = "col-sm-2">  
+                    <p style = "text-align: center;font-size: 12px;">Start Time</p>
+                  </div>           
+                  <div class = "col-sm-2">    
+                    <p style = "text-align: center;font-size: 12px;">End Time</p>
+                  </div>
+                  <div class = "col-sm-1"> 
+                    <p style = "text-align: center;font-size: 12px;">Guests</p>
+                  </div>
+                  <div class = "col-sm-1"> 
+                    <p style = "text-align: center;font-size: 12px;">Total ($)</p>
+                  </div>
+                  <div class = "col-sm-1"> 
+                    <p style = "text-align: center;font-size: 12px;">Status</p>
+                  </div>
+                  <div class = "col-sm-3"> 
+                    <p style = "text-align: center;font-size: 12px;">Action</p>
+                  </div>
+          
+         <% @listingavailabilities.each do |availability| %>
+          <% availability.reservations.each do |reservation| %>
+
+
+                  <div class = "col-sm-2">    
+                    <p style = "text-align: center;font-size: 12px;"><%= reservation.booking_date %></p>
+                  </div>           
+                  <div class = "col-sm-2">  
+                    <p style = "text-align: center;font-size: 12px;"><%= reservation.start_time.strftime("%I:%M %P") %></p>
+                  </div>           
+                  <div class = "col-sm-2">    
+                    <p style = "text-align: center;font-size: 12px;"><%= reservation.end_time.strftime("%I:%M %P") %></p>
+                  </div>
+                  <div class = "col-sm-1"> 
+                    <p style = "text-align: center;font-size: 12px;"><%= reservation.numberofguests %></p>
+                  </div>
+                  <div class = "col-sm-1"> 
+                    <p style = "text-align: center;font-size: 12px;"><%= reservation.total_cost %></p>
+                  </div>
+                  <div class = "col-sm-1"> 
+                    <p style = "text-align: center;font-size: 12px;"><%= reservation.status %></p>
+                  </div>
+                  <div class = "col-sm-3"> 
+                    <p style = "text-align: center;font-size: 12px;">
+                    <% if reservation.status == "requested" %>
+
+                      <%= link_to 'Approve', approvereservation_listing_availability_reservation_path(@listing.id, availability.id, reservation.id), class: "btn btn-success btn-xs" %>                    
+                      <%= link_to 'Reject', listing_availability_reservation_path(@listing.id, availability.id, reservation.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-xs"  %>
+
+                    <% elsif reservation.status == "approved" %>
+
+                      <%= link_to 'Please Wait', 'javascript:;', :id => :foo , class: "btn btn-warning btn-xs"  %>
+
+                    <% elsif reservation.status == "billed" %>
+
+                      <%= link_to 'Please Wait', 'javascript:;', :id => :foo , class: "btn btn-info btn-xs"  %>
+
+                    <% elsif reservation.status == "paid" %>
+
+                    <%= link_to 'Contact Reserver', 'javascript:;', :id => :foo , class: "btn btn-primary btn-xs"  %>
+
+                    <% elsif  reservation.status == "onhold"  %>
+
+                      <%= link_to 'On hold', 'javascript:;', :id => :foo , class: "btn btn-danger btn-xs"  %>
+
+                    <% end %>
+
+                  </div>
+          <% end %>
+         <% end %>
+
+      </div>  
+      <div class="col-sm-12 text-center">
+        <hr>
+      </div>  
+<%end%>
+
+ 
+    
+</div>
+
+
+<script>
+  (function() {
+
+    init(); //on page load - show first slide, hidethe rest
+
+    function init() {
+
+      // document.getElementById("defaultOpen").click();
+
+      parents = document.getElementsByClassName('slideshow-container');
+
+      for (j = 0; j < parents.length; j++) {
+        var slides = parents[j].getElementsByClassName("mySlides");
+        var dots = parents[j].getElementsByClassName("dot");
+        slides[0].classList.add('active-slide');
+        dots[0].classList.add('active');
+      }
+    }
+
+    dots = document.getElementsByClassName('dot'); //dots functionality
+
+    for (i = 0; i < dots.length; i++) {
+
+      dots[i].onclick = function() {
+
+        slides = this.parentNode.parentNode.getElementsByClassName("mySlides");
+
+        for (j = 0; j < this.parentNode.children.length; j++) {
+          this.parentNode.children[j].classList.remove('active');
+          slides[j].classList.remove('active-slide');
+          if (this.parentNode.children[j] == this) {
+            index = j;
+          }
+        }
+        this.classList.add('active');
+        slides[index].classList.add('active-slide');
+
+      }
+    }
+  //prev/next functionality
+    links = document.querySelectorAll('.slideshow-container a');
+
+    for (i = 0; i < links.length; i++) {
+      links[i].onclick = function() {
+        current = this.parentNode;
+
+        var slides = current.getElementsByClassName("mySlides");
+        var dots = current.getElementsByClassName("dot");
+        curr_slide = current.getElementsByClassName('active-slide')[0];
+        curr_dot = current.getElementsByClassName('active')[0];
+        curr_slide.classList.remove('active-slide');
+        curr_dot.classList.remove('active');
+        if (this.className == 'next') {
+
+          if (curr_slide.nextElementSibling.classList.contains('mySlides')) {
+            curr_slide.nextElementSibling.classList.add('active-slide');
+            curr_dot.nextElementSibling.classList.add('active');
+          } else {
+            slides[0].classList.add('active-slide');
+            dots[0].classList.add('active');
+          }
+
+        }
+
+        if (this.className == 'prev') {
+
+          if (curr_slide.previousElementSibling) {
+            curr_slide.previousElementSibling.classList.add('active-slide');
+            curr_dot.previousElementSibling.classList.add('active');
+          } else {
+            slides[slides.length - 1].classList.add('active-slide');
+            dots[slides.length - 1].classList.add('active');
+          }
+
+        }
+
+      }
+
+    }
+  })();
+</script>

@@ -1,0 +1,25 @@
+<div class = "col-sm-12">
+
+  <div class = "col-sm-1 col-md-1 col-lg-1">
+  </div>
+    
+
+  <div class = "col-sm-10 col-md-10 col-lg-10" >
+      <strong><h1 style = "font-size: 70px; font-family: 'Heebo', cursive; text-align: center; color: #7C064D; margin-bottom: 20px; ">NOTIFICATIONS</h1></strong>
+
+      
+        <% @mynotifications.each do |notification| %>
+          
+            <p style = "font-size: 11px;"><%= notification.message %> <%= link_to 'Delete', notification, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-xs", style: "background-color: #E20049; border: #e20049;"  %></p>
+              <br>
+              
+      
+          
+        <% end %>
+
+  </div>
+
+  <div class = "col-sm-1 col-md-1 col-lg-1">
+  </div>
+
+</div>

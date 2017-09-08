@@ -1,0 +1,38 @@
+	<%= bootstrap_form_for listings_path, :method => 'get' do %>
+
+		<%= hidden_field_tag :direction, :value => params[:direction] %>
+		<%= hidden_field_tag :sort,:value => params[:sort] %>
+
+		
+		
+		<div class= "col-sm-12 col-lg-12 col-md-12" style = "margin: auto;">
+			<h6 style = "color:#7C064D;"><strong> PICK A DATE  <span class="glyphicon glyphicon-calendar"></span></strong>
+			<%= date_field_tag :startdate, params[:startdate], placeholder: 'DATE' %>			
+			</h6>
+		</div>	
+
+		<div class= "col-sm-12 col-lg-12 col-md-12" style = "margin: auto;">	
+		<p>		
+			<%= text_field_tag :near, params[:near], placeholder: ' Destination' %>
+			<%= text_field_tag :radius, params[:radius], placeholder: ' Search Radius' %>
+		</p>
+		</div>		
+		<div class= "col-sm-12 col-lg-12 col-md-12" style = "margin: auto;">	
+		<p>		
+			<%= text_field_tag :min, params[:min], placeholder: ' Minimum Rate Per Hour' %>
+			<%= text_field_tag :max, params[:max], placeholder: ' Maximum Rate Per Hour' %>
+		</p>
+		</div>
+
+		<div class= "col-sm-12 col-lg-12 col-md-12" style = "margin-top: 10px;">		
+			<%= submit_tag "Search", class: "btn btn-info", style: "width: 40%; background-color: #E20049; border: #e20049;" %>
+			<%= link_to 'View All', root_path, class: "btn btn-info", style: "width: 40%; background-color: #E20049; border: #e20049;" %>
+		</div>
+
+		<!-- <div class= "col-sm-6 col-lg-6 col-md-6" style = "margin-top: 10px;">		
+			
+		</div> -->
+		
+		
+	<% end %>
+

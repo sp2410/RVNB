@@ -1,0 +1,88 @@
+<%= bootstrap_form_for @payment do |form| %>
+  <% if @payment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@payment.errors.count, "error") %> prohibited this payment from being saved:</h2>
+
+      <ul>
+      <% @payment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<strong><p style = "font-size: 15px; font-family: 'Heebo', cursive; color: #e20049; margin-bottom: 20px; text-align: left; ">
+Please Read carefully:
+</p>
+
+<strong><p style = "font-size: 12px; font-family: 'Heebo', cursive; color: #e20049; margin-bottom: 20px; text-align: left; ">1. Right now we only support Paypal and Checks for sending money. <br>2. We release the money to the lessee only once we have received renter's feedback.  <br>3. If we find that your behaviour is not suited to our values or you are not being honest with our ethics or receive complains about a reservation, we reserve the right to take more time for your case, put it on hold or even cancel your membership.<br>4. We will try to send your money through paypal if filled in the form but we may choose to send it through check depending upon the situation at the time. <br>5. We request you to fill in your billing address details as mandatory fields</p></strong>
+
+
+<br>
+<hr>
+<br>
+
+
+<strong><p style = "font-size: 12px; font-family: 'Heebo', cursive; color: #e20049; margin-bottom: 20px;">To make sure you receive regular upto date information, apart from email, we request for your mobile number</p>
+  
+  <div class="field">    
+    <%= form.text_field :contact_number, id: :payment_contact_number, :label => "Please Enter Your Number in format: +13181139193 (No Non Numeric Please)" %>
+  </div>
+
+
+
+<br>
+<hr>
+<br>
+
+
+<strong><p style = "font-size: 12px; font-family: 'Heebo', cursive; color: #7C064D; margin-bottom: 20px;">Fill in  paypal email if you wish to receve money though paypal</p>
+
+  <div class="field">    
+    <%= form.text_field :paypal_email, id: :payment_paypal_email, :label => "PayPal Email" %>
+  </div>
+
+<br>
+<hr>
+<br>
+
+<!-- <strong><p style = "font-size: 12px; font-family: 'Heebo', cursive; color: #7C064D; margin-bottom: 20px;">Fill in your Bank details for receiving money through bank transfer</p>
+
+
+  <div class="field">    
+    <%= form.text_field :bank_routing_number, id: :payment_bank_routing_number %>
+  </div>
+
+  <div class="field">    
+    <%= form.text_field :bank_account_number, id: :payment_bank_account_number %>
+  </div>
+
+<br>
+<hr>
+<br> -->
+
+
+<strong><p style = "font-size: 12px; font-family: 'Heebo', cursive; color: #e20049; margin-bottom: 20px;">(*) Please fill all the details below. These fields are mandatory</p>
+
+
+  <div class="field">    
+    <%= form.text_field :billing_name, id: :payment_billing_name, :label => "Lessee Name" %>
+  </div>
+
+  <div class="field">    
+    <%= form.text_field :billing_street_address, id: :payment_billing_street_address, :label => "Lessee Street Address" %>
+  </div>
+
+  <div class="field">    
+    <%= form.text_field :billing_city, id: :payment_billing_city, :label => "Lessee City" %>
+  </div>
+
+  <div class="field">    
+    <%= form.text_field :billing_state, id: :payment_billing_state, :label => "Lessee State" %>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit "Submit", :class => "btn btn-primary", style: "background-color: #E20049; border: #e20049;"  %>
+  </div>
+<% end %>

@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Paypal email:</strong>
+  <%= @payment.paypal_email %>
+</p>
+
+<p>
+  <strong>Bank routing number:</strong>
+  <%= @payment.bank_routing_number %>
+</p>
+
+<p>
+  <strong>Bank account number:</strong>
+  <%= @payment.bank_account_number %>
+</p>
+
+<p>
+  <strong>Billing name:</strong>
+  <%= @payment.billing_name %>
+</p>
+
+<p>
+  <strong>Billing street address:</strong>
+  <%= @payment.billing_street_address %>
+</p>
+
+<p>
+  <strong>Billing city:</strong>
+  <%= @payment.billing_city %>
+</p>
+
+<p>
+  <strong>Billing state:</strong>
+  <%= @payment.billing_state %>
+</p>
+
+<%= link_to 'Edit', edit_payment_path(@payment) %> |
+<%= link_to 'Back', payments_path %>

@@ -1,0 +1,136 @@
+<%= bootstrap_form_for @listing do |form| %>
+
+  <% if listing.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(listing.errors.count, "error") %> prohibited this listing from being saved:</h2>
+      <ul>
+      <% listing.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+<hr>
+
+  <strong><p style = "font-size: 20px; font-family: 'Heebo', cursive; color: #7C064D; margin-bottom: 20px;text-align: left;">Few descriptions go a long way! </p>
+
+  <div class="field">  
+    <%= form.select :vehicletype, ['Boat','RV'] , id: :listing_vehicletype, :label => "Boat or RV?" %>
+  </div>
+
+  <div class="field">    
+    <%= form.text_field :title, id: :listing_title, :placeholder => "(*) Enter a small descriptive Title", :label => "(*) Title" %>
+  </div>
+
+  <div class="field">  
+    <%= form.text_area :description, id: :listing_description, :placeholder => "(*) You can use HTML Tags in this area for using bold, italics and links. Describe your vehicle conditions in your best words. We would request you to be as honest as possible. Any false information can result in cancellations of reservations or even revoking service privliges.", :label => "(*) Description" %>
+  </div>
+
+  <div class="field">    
+    <%= form.select :year, (Time.zone.now.year - 50)..(Time.zone.now.year + 1), :selected => '2017', :label => "Year", id: :listing_year    %>
+  </div>
+
+  <div class="field">    
+    <%= form.text_field :length, id: :listing_length, :placeholder => "(*) Enter length in feet", :label => "(*) Enter length in feet" %>
+  </div>
+
+  <div class="field">    
+    <%= form.text_field :sleeps, id: :listing_sleeps, :placeholder => "Enter capacity (Number of people)" %>
+  </div>
+
+  <div class="field">    
+    <%= form.text_field :rateperhour, id: :listing_rateperhour, :placeholder => "(*) Enter Rate Per Hour in Dollar", :label => "(*) Rate Per Hour" %>
+  </div>
+
+  
+  <div class="field">    
+    <%= form.text_field :rentalminimum, id: :listing_rentalminimum, :placeholder => "(*) Enter Minimum Number of hours allowed for renting", :label => "(*) Rental Minimum" %>
+  </div>
+
+  <hr>
+
+  <div class="field">    
+    <%= form.text_field :maximum_guest_allowed, id: :listing_maximum_guest_allowed, :placeholder => "How many people are allowed for that rate per hour", :label => "(*) Number of People Allowed" %>
+  </div>
+
+
+  <div class="field">    
+    <%= form.text_field :extra_guest_charges, id: :listing_extra_guest_charges, :placeholder => "Enter amount charged for each extra person", :label => "(*) Charges per Extra Guest" %>
+  </div>
+
+  <hr>
+
+  <strong><p style = "font-size: 20px; font-family: 'Heebo', cursive; color: #7C064D; margin-bottom: 20px;text-align: left;">Its great to showcase it on the map!</p>
+  
+  <div class="field">    
+    <%= form.text_field :city, id: :listing_city %>
+  </div>
+
+  <div class="field">    
+    <%= form.text_field :state, id: :listing_state %>
+  </div>
+
+  <div class="field">    
+    <%= form.text_field :zipcode, id: :listing_zipcode %>
+  </div>
+
+  <hr>
+
+  <strong><p style = "font-size: 20px; font-family: 'Heebo', cursive; color: #7C064D; margin-bottom: 20px;text-align: left;">Images always make good impressions!</p>
+
+  <div class="field">    
+    <%= form.file_field :imagefront, id: :listing_imagefront %>
+  </div>
+
+  <div class="field">    
+    <%= form.file_field :imageback, id: :listing_imageback %>
+  </div>
+
+  <div class="field">    
+    <%= form.file_field :imageleft, id: :listing_imageleft %>
+  </div>
+
+  <div class="field">    
+    <%= form.file_field :imageright, id: :listing_imageright %>
+  </div>
+
+  <div class="field">    
+    <%= form.file_field :interiorfront, id: :listing_interiorfront %>
+  </div>
+
+  <div class="field">    
+    <%= form.file_field :interiorback, id: :listing_interiorback %>
+  </div>
+
+  <hr>
+
+  <strong><p style = "font-size: 20px; font-family: 'Heebo', cursive; color: #7C064D; margin-bottom: 20px;text-align: left;">Where should people pick it up from?</p>
+
+  <div class="field">    
+    <%= form.text_field :pickup_street_address, :label => "(*) Pickup Street Address" %>
+  </div>
+
+  <div class="field">    
+    <%= form.text_field :pickup_city, :label => "(*) Pickup City" %>
+  </div>
+
+  <div class="field">    
+    <%= form.text_field :pickup_state, :label => "(*) Pickup State: e.g. AZ" %>
+  </div>
+
+  <div class="field">    
+    <%= form.text_field :pickup_zipcode, :label => "(*) Pickup Street Zipcode" %>
+  </div>
+   
+  <div class="actions">
+    <%= form.submit 'Save', :class => "btn btn-primary", style: "background-color: #E20049; border: #e20049;"  %>
+  </div>
+<% end %>
+
+
+
+
+
+

@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Specks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @specks.each do |speck| %>
+      <tr>
+        <td><%= speck.name %></td>
+        <td><%= link_to 'Show', speck %></td>
+        <td><%= link_to 'Edit', edit_speck_path(speck) %></td>
+        <td><%= link_to 'Destroy', speck, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Speck', new_speck_path %>

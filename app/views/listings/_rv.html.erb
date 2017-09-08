@@ -1,0 +1,120 @@
+<h1 style = "text-align: center; color: #7C064D;" >RECREATIONAL VEHICLES</h1>
+
+<div id = "boatlist">
+
+ <% if @listingsrvs.empty? %>
+      <div class = "col-sm-12 col-md-12 col-lg-12" style = "text-align: center;">
+        <p style ="margin: 10px;font-size: 20px; color: #e20049;">NO RVs ADDED YET</p>
+      </div>
+  <% end %>
+
+    <%- @listingsrvs.each do |i| -%>          
+            <div class = "col-sm-12 col-md-6 col-lg-4">
+              <div class="wrap">
+              <%= link_to i, target: :_blank do %>
+                <div class="card1" style = "outline: 0px solid black;"> 
+
+                    <!-- <div class="price" style = "background-color: rgba(0,0,0,0.5);outline: 2px solid  black; %>; z-index: 1000;">
+                      <p style ="margin: 0px;font-size: 20px;"><%= i.rateperhour %><span class="glyphicon glyphicon-usd" aria-hidden="true"></span></p>
+                    </div> -->
+
+
+                    <div class="slideshow-container" >
+
+                      <%- if i.imagefront.present? -%>
+                        <div class="mySlides">
+                          <img src=<%= i.imagefront.url(:thumb) if i.imagefront.present? %> style="width:100%; height: 200px;">
+                        </div>
+                      <% end %>
+
+                      <%- if i.imageback.present? -%>
+
+                        <div class="mySlides">
+                          <img src=<%= i.imageback.url(:thumb) if i.imageback.present? %> style="width:100%; height: 200px;">
+                        </div>
+                      <% end %>
+
+                      <%- if i.imageleft.present? -%>  
+                          <div class="mySlides">
+                          <img src=<%= i.imageleft.url(:thumb) if i.imageleft.present? %> style="width:100%; height: 200px;">
+                        </div>
+
+                      <% end %>
+
+                      <%- if i.imageright.present? -%>  
+                          <div class="mySlides">
+                          <img src=<%= i.imageright.url(:thumb) if i.imageright.present? %> style="width:100%; height: 200px;">
+                        </div>
+
+                      <% end %>
+
+                      <%- if i.interiorfront.present? -%>  
+                        <div class="mySlides">
+                          <img src=<%= i.interiorfront.url(:thumb) if i.interiorfront.present? %> style="width:100%; height: 200px;">
+                        </div>
+
+                      <% end %>
+
+                     
+
+                      <a class="prev">&#10094;</a>
+                      <a class="next">&#10095;</a>
+                        
+
+                      <div style="text-align:center; margin-top: -35px;">
+                        <%- if i.imagefront.present? -%>
+                          <span class="dot"></span>
+                         <% end %>
+                         <%- if i.imageback.present? -%>
+                          <span class="dot" ></span>
+                         <% end %>
+                         <%- if i.imageleft.present? -%>
+                          <span class="dot" ></span>
+                         <% end %>
+                         <%- if i.imageright.present? -%>
+                           <span class="dot"></span>
+                         <% end %>
+                         <%- if i.interiorfront.present? -%>
+                           <span class="dot"></span>
+                         <% end %>              
+
+                                             
+                      </div>
+                    </div> 
+              <% end %>
+                <div class="description">
+                      <div class="row">
+                        <div class="col-sm-12">
+
+                        <h4 class="row text-center" style = "color: #2a93d5;"><strong><%= i.title.upcase %></strong></h4>
+
+                                <div class="col-sm-12">
+                                  <p style ="margin: 1px;font-size: 20px; color: #7C064D;">From <%= i.rateperhour %><span class="glyphicon glyphicon-usd" aria-hidden="true"></span></p>
+                                </div>
+                        
+                        <div class="col-sm-12">
+                          <p style ="margin: 0px;font-size: 10px;">Min. <%= i.rentalminimum %> hours - Year <%= i.year %> - Sleeps <%= i.sleeps %></p>
+                          <!-- <p style ="margin: 0px;font-size: 10px;">Min. <%= i.rentalminimum %> days</p> -->
+
+                                        
+                          <%-if i["description"].length < 41 -%>     
+                            <!-- <p style ="margin: 0px;font-size: 10px; overflow-x:hidden;">Description: <%= i["description"].downcase[0..40] %></p>  -->
+                          <% else %>
+                            <!-- <p style ="margin: 0px;font-size: 10px; overflow-x:hidden;">Description: <%= i["description"].downcase[0..30] %>...</p>  -->
+                          <% end %>
+                        </div> 
+                        </div>                  
+                      </div>
+                </div>
+
+              </div>                  
+                            
+              </div>
+            </div>
+    <% end %> 
+</div>
+
+<div style = "text-align: center;">
+  <%= will_paginate @listingsrvs, :style => "color: #3ddad7" %>
+
+</div>

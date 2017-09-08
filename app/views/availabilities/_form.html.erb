@@ -1,0 +1,14 @@
+<%= bootstrap_form_for [@listing, @availability]  do |f| %>   
+  
+  <div class="field">    
+    <%= f.date_field :startdate, id: :availability_startdate %>
+  </div>
+
+  <div class="field">    
+    <%= f.date_field :enddate, id: :availability_enddate %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Submit" ,class: "btn btn-primary", style: "background-color: #E20049; border: #e20049;"  %>
+  </div>
+<% end %>

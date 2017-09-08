@@ -1,0 +1,162 @@
+<h1 style = "text-align: center; color: #7C064D;" >RECREATIONAL VEHICLE</h1>
+
+
+
+
+<div id = "boatlist">
+
+    <% if @listingsrvs.empty? %>
+      <div class = "col-sm-12 col-md-12 col-lg-12" style = "text-align: center;">
+        <p style ="margin: 10px;font-size: 20px; color: #e20049;">YOU HAVE NO RESERVATIONS ON ANY RVs YET!</p>
+      </div>
+    <% end %>
+
+
+    <%- @listingsrvs.each do |i| -%>          
+            <div class = "col-sm-12 col-md-12 col-lg-12">
+
+            <div class = "col-sm-4 col-md-4 col-lg-4">
+
+              <div class="wrap">              
+                <div class="card1" style = "outline: 0px solid black;"> 
+                      <%= link_to i, target: :_blank do %>
+                          <div class="slideshow-container" >
+
+                            <%- if i.imagefront.present? -%>
+                              <div class="mySlides">
+                                <img src=<%= i.imagefront.url(:thumb) if i.imagefront.present? %> style="width:100%; height: 200px;">
+                              </div>
+                            <% end %>
+
+                            <%- if i.imageback.present? -%>
+                              <div class="mySlides">
+                                <img src=<%= i.imageback.url(:thumb) if i.imageback.present? %> style="width:100%; height: 200px;">
+                              </div>
+                            <% end %>
+
+                            <%- if i.imageleft.present? -%>  
+                              <div class="mySlides">
+                                <img src=<%= i.imageleft.url(:thumb) if i.imageleft.present? %> style="width:100%; height: 200px;">
+                              </div>
+
+                            <% end %>
+
+                            <%- if i.imageright.present? -%>  
+                              <div class="mySlides">
+                                <img src=<%= i.imageright.url(:thumb) if i.imageright.present? %> style="width:100%; height: 200px;">
+                              </div>
+
+                            <% end %>
+
+                            <%- if i.interiorfront.present? -%>  
+                              <div class="mySlides">
+                                <img src=<%= i.interiorfront.url(:thumb) if i.interiorfront.present? %> style="width:100%; height: 200px;">
+                              </div>
+
+                            <% end %>
+
+                           
+
+                            <a class="prev">&#10094;</a>
+                            <a class="next">&#10095;</a>
+                              
+
+                            <div style="text-align:center; margin-top: -35px;">
+                              <%- if i.imagefront.present? -%>
+                                <span class="dot"></span>
+                               <% end %>
+                               <%- if i.imageback.present? -%>
+                                <span class="dot" ></span>
+                               <% end %>
+                               <%- if i.imageleft.present? -%>
+                                <span class="dot" ></span>
+                               <% end %>
+                               <%- if i.imageright.present? -%>
+                                 <span class="dot"></span>
+                               <% end %>
+
+                               <%- if i.interiorfront.present? -%>
+                                 <span class="dot"></span>
+                               <% end %>              
+
+                                                   
+                            </div>
+                          </div> 
+                      <% end  %>
+                      <div class="description">
+                            <div class="row">
+                              <div class="col-sm-12">
+                                <h5 class="row text-center" style = "color: #2a93d5;"><strong><%= i.title.upcase %></strong></h5>
+
+                                <div class="col-sm-12">
+                                  <p style ="margin: 1px;font-size: 20px; color: #7C064D;">From <%= i.rateperhour %><span class="glyphicon glyphicon-usd" aria-hidden="true"></span></p>
+                                </div>
+
+                                <div class="col-sm-12">
+                                  <p style ="margin: 0px;font-size: 10px;">Min. <%= i.rentalminimum %> hours - Year <%= i.year %> - Sleeps <%= i.sleeps %></p>                          
+                                </div> 
+
+                              </div>                  
+                            </div>
+                      </div>                      
+                </div>                  
+                            
+              </div>
+
+              </div>
+
+              <div class = "col-sm-8 col-md-8 col-lg-8">
+              
+                <div class="reservations">
+
+                <% if getreservations(i) %>
+
+                  <%- getreservations(i).each do |reservation| -%>          
+
+                                <div class="row" style = "margin-top: 2em;">
+                                  <div class="col-sm-12"> 
+
+                                    <div class="col-sm-12">
+                                      <p style ="margin: 1px;font-size: 10px; color: #e20049;">Reservation Id:</p><p style ="margin: 1px;font-size: 10px; color: black;"><%= reservation.id %></p>
+                                      <p style ="margin: 1px;font-size: 10px; color: #e20049;">Booking Date:</p><p style ="margin: 1px;font-size: 10px; color: black;"><%= reservation.booking_date %></p>
+                                      <p style ="margin: 1px;font-size: 10px; color: #e20049;">Start Time:</p><p style ="margin: 1px;font-size: 10px; color: black;"> <%= reservation.start_time.strftime("%I:%M%p") %></p>
+                                      <p style ="margin: 1px;font-size: 10px; color: #e20049;">End Time:</p><p style ="margin: 1px;font-size: 10px; color: black;"> <%= reservation.end_time.strftime("%I:%M%p") %></p>
+                                      <p style ="margin: 1px;font-size: 10px; color: #e20049;">Total Cost:</p><p style ="margin: 1px;font-size: 10px; color: black;"> <%= reservation.total_cost %></p>
+                                      <p style ="margin: 1px;font-size: 10px; color: #e20049;">Status:</p><p style ="margin: 1px;font-size: 10px; color: black;"> <%= reservation.status %></p>
+
+                                      <p style ="margin: 1px;font-size: 10px; color: #e20049;">Cancel: </p><p style ="margin: 1px;font-size: 10px; color: black;"></p>
+
+                                      <td><%= link_to 'Cancel', listing_availability_reservation_path(reservation.listing_id, reservation.availability_id, reservation.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-info btn-xs", style: "background-color: #E20049; border: #e20049;"  %></td>
+
+                                      
+                                    </div>
+                                   
+                                  </div>                                                    
+                                </div>
+
+                    <% end %>
+
+                <% else %>
+
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <p style ="margin: 1px;font-size: 20px; color: #7C064D;">No Reservations Yet!</p>
+                        </div>
+                      </div>
+
+
+                <% end %>
+
+                  </div> 
+
+              </div>
+
+
+            </div>
+    <% end %> 
+</div>
+
+<div style = "text-align: center;">
+  <%= will_paginate @listingsboats, :style => "color: #3ddad7" %>
+
+</div>

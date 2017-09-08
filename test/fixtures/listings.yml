@@ -1,0 +1,39 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyString
+  year: MyString
+  length: MyString
+  sleeps: MyString
+  rateperhour: MyString
+  vehicletype: MyString
+  rentalminimum: MyString
+  latitude: 1.5
+  longitude: 1.5
+  city: MyString
+  imagefront: MyString
+  imageback: MyString
+  imageleft: MyString
+  imageright: MyString
+  interiorfront: MyString
+  interiorback: MyString
+
+two:
+  title: MyString
+  description: MyString
+  year: MyString
+  length: MyString
+  sleeps: MyString
+  rateperhour: MyString
+  vehicletype: MyString
+  rentalminimum: MyString
+  latitude: 1.5
+  longitude: 1.5
+  city: MyString
+  imagefront: MyString
+  imageback: MyString
+  imageleft: MyString
+  imageright: MyString
+  interiorfront: MyString
+  interiorback: MyString

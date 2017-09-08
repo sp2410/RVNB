@@ -1,0 +1,124 @@
+<div class = "col-sm-12 col-md-12 col-lg-12" style = "text-align: center;">
+
+<strong><h1 style = "font-size: 110px; font-family: 'Heebo', cursive;  color: #7C064D; margin-bottom: 20px; ">EDIT <%= resource_name.to_s.humanize.upcase %></h1></strong>
+  
+  <div class = "col-sm-6 col-md-6 col-lg-6" style = "text-align: center;">
+    
+    <strong><h1 style = "font-size: 40px; font-family: 'Heebo', cursive;  color: #7C064D; margin-bottom: 20px; ">EDIT <%= resource_name.to_s.humanize.upcase %> PASSWORD</h1></strong>
+    <strong><h1 style = "font-size: 20px; font-family: 'Heebo', cursive;  color: #E20049; margin-bottom: 20px; ">(*) Don't use if signed up through Facebook or Google </h1></strong>
+        
+        <hr>    
+
+        <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+          <%= devise_error_messages! %>
+
+          <div class="field">
+            
+            <%= f.email_field :email, autofocus: true %>
+          </div>
+
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+          <% end %>
+
+          <div class="field">
+            <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+            <%= f.password_field :password, autocomplete: "off" %>
+            <% if @minimum_password_length %>
+              <br />
+              <em><%= @minimum_password_length %> characters minimum</em>
+            <% end %>
+          </div>
+
+          <div class="field">
+            <%= f.label :password_confirmation %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "off" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+            <%= f.password_field :current_password, autocomplete: "off" %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit "Update", class: "btn btn-primary", style: "background-color: #E20049; border: #e20049;"   %>
+          </div>
+        <% end %>
+
+        <h3>Cancel my account</h3>
+
+        <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-primary", style: "background-color: #E20049; border: #e20049;" %></p>
+
+  </div>
+
+
+  <div class = "col-sm-6 col-md-6 col-lg-6">
+
+    <strong><h1 style = "font-size: 40px; font-family: 'Heebo', cursive;  color: #7C064D; margin-bottom: 20px; ">ADD PAYMENT DETAILS</h1></strong>  
+
+         
+      <%= link_to "Add Payment Details", new_payment_path, class: "btn btn-primary", style: "background-color: #E20049; border: #e20049;" %>
+
+  <div class = "w3-panel w3-card-2" style = "padding: 5px; margin: 2px; ">
+
+      <strong><p style = "font-size: 20px; font-family: 'Heebo', cursive; color: #7C064D; margin-bottom: 20px;text-align: left;">Text Notifications Setting:</p>
+
+      <strong><p style = "font-size: 15px; font-family: 'Heebo', cursive; color: #e20049; margin-bottom: 20px;text-align: left;">Mobile Number: <%= getpayment(resource).contact_number if getpayment(resource) %>
+      </p></strong>
+
+
+      <hr>
+
+      <strong><p style = "font-size: 20px; font-family: 'Heebo', cursive; color: #7C064D; margin-bottom: 20px;text-align: left;">Paypal Info</p>
+
+      <strong><p style = "font-size: 15px; font-family: 'Heebo', cursive; color: #e20049; margin-bottom: 20px;text-align: left;">
+      Paypal Email: <%= getpayment(resource).paypal_email if getpayment(resource) %>
+      </p></strong>
+
+      <hr>
+
+     <!--  <strong><p style = "font-size: 15px; font-family: 'Heebo', cursive; color: #e20049; margin-bottom: 20px;text-align: left;">
+      Bank Account Number: <%= getpayment(resource).bank_account_number if getpayment(resource) %>
+      </p></strong>
+
+      <strong><p style = "font-size: 15px; font-family: 'Heebo', cursive; color: #e20049; margin-bottom: 20px;text-align: left;">
+      Bank Routing Number: <%= getpayment(resource).bank_routing_number if getpayment(resource) %>
+      </p></strong>
+
+      <hr>
+ -->      
+
+      <strong><p style = "font-size: 20px; font-family: 'Heebo', cursive; color: #7C064D; margin-bottom: 20px;text-align: left;">Lessee Info for Checks</p>
+
+      <strong><p style = "font-size: 15px; font-family: 'Heebo', cursive; color: #e20049; margin-bottom: 20px;text-align: left;">
+      Lessee Name: <%= getpayment(resource).billing_name if getpayment(resource) %>
+      </p></strong>
+
+      <strong><p style = "font-size: 15px; font-family: 'Heebo', cursive; color: #e20049; margin-bottom: 20px;text-align: left;">
+      Lessee Street Address: <%= getpayment(resource).billing_street_address if getpayment(resource) %>
+      </p></strong>
+
+      <strong><p style = "font-size: 15px; font-family: 'Heebo', cursive; color: #e20049; margin-bottom: 20px;text-align: left;">
+      Lessee City: <%= getpayment(resource).billing_city if getpayment(resource) %>
+      </p></strong>
+
+      <strong><p style = "font-size: 15px; font-family: 'Heebo', cursive; color: #e20049; margin-bottom: 20px;text-align: left;">
+      Lessee State: <%= getpayment(resource).billing_state if getpayment(resource) %>
+      </p></strong>
+
+
+      <% if getpayment(resource) %>
+        <%= link_to "Edit Payment Details", edit_payment_path(getpayment(resource)), class: "btn btn-primary", style: "background-color: #E20049; border: #e20049;" %>
+      <% end %>
+
+    </div>
+
+
+
+
+          
+  </div>
+
+
+
+</div>

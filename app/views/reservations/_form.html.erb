@@ -1,0 +1,49 @@
+<%= bootstrap_form_for [@listing, @availability, @reservation]  do |form| %>   
+
+<strong><p style = "font-size: 12px; font-family: 'Heebo', cursive; color: #e20049; margin-bottom: 20px; text-align: left; ">The Owner wants minimum of <%= @listing.rentalminimum %> hours. We will allow you to book for less than that and leave it to the owner <br> To increase your chances of approval, we would recommend you choose a greater time span <br>Please update the phone number in profile link above to recieve  real time text notfications </p></strong>
+
+  <div class="field">
+    <%= form.date_field :booking_date, :value => params[:date]  %>
+  </div>  
+ 
+  <div class="field">    
+    <%= form.time_select :start_time %>
+  </div>
+
+  <div class="field">    
+    <%= form.time_select :end_time %>
+  </div>
+
+
+<br>
+<hr>
+<br>
+
+  <div class="field">
+    <%= form.number_field :numberofguests, :label => "Number of Guests" %>
+  </div>
+
+
+<br>
+<hr>
+<br>
+
+<strong><p style = "font-size: 12px; font-family: 'Heebo', cursive; color: #e20049; margin-bottom: 20px; text-align: left; ">Note: We charge a flat 10% service fee on each reservation. Net total bill will be sent through email once reservation is approved</p></strong>
+
+
+<div id = "total" ></div>
+
+<br>
+
+  <div class="field">
+    <%= form.number_field :total_cost, :label => "Press button above to calculate total cost (*) $" %>
+  </div>
+
+  
+
+  <div class="actions">
+    <%= form.submit 'Reserve', :class => "btn btn-primary", style: "background-color: #E20049; border: #e20049;"  %>
+  </div>
+<% end %>
+
+

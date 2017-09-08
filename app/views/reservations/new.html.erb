@@ -1,0 +1,91 @@
+<div class = "col-sm-12 col-md-12 col-lg-12" style = "min-height: 700px;">
+
+	<div class = "col-sm-3 col-md-3 col-lg-3">
+	</div>
+	
+
+	<div class = "col-sm-6 col-md-6 col-lg-6" style = "text-align: center; ">
+	  <strong><h1 style = "font-size: 70px; font-family: 'Heebo', cursive; color: #7C064D; margin-bottom: 20px; ">NEW RESERVATION</h1></strong>
+	  
+		<%= render 'form', reservation: @reservation %>
+
+	</div>
+
+	<div class = "col-sm-3 col-md-3 col-lg-3">
+	</div>
+
+</div>
+
+
+<script>
+  
+  $(document).ready(function(){
+      
+    $('#total')
+	  .append('<input type="button" value="Calculate Total" >') // Create the element  
+	  .button()
+	  .click(function(){ 
+
+	  		var starthour = parseInt($('select#reservation_start_time_4i').val()*60);
+		    console.log(starthour);
+
+		    var startmin = parseInt($('select#reservation_start_time_5i').val());
+		    
+
+		    var endhour = parseInt($('select#reservation_end_time_4i').val()*60);
+		    // console.log(endhour);
+
+
+		    var endmin = parseInt($('select#reservation_end_time_5i').val());
+
+
+		    // console.log(endhour+endmin);
+
+		    var totalhour = (((endhour + endmin) - (starthour + startmin))/60)*("<%= @listing.rateperhour %>");
+
+		    var number_of_guests = parseInt($('input#reservation_numberofguests').val()); 
+
+		    if ( number_of_guests > "<%= @listing.maximum_guest_allowed %>"){
+
+		    	// console.log("here");
+
+		    	totalhour += (number_of_guests - ("<%= @listing.maximum_guest_allowed %>"))*("<%= @listing.extra_guest_charges  %>")
+		    }
+
+
+		    // console.log(totalhour);
+
+		    $('input#reservation_total_cost').val(totalhour);
+
+
+	  });
+
+
+    // $("input#reservation_numberofguests").on("input", function(){
+
+	   //  var starthour = $('select#reservation_start_time_4i').val();
+	   //  console.log(starthour);
+
+	   //  var startmin = $('select#reservation_start_time_5i').val();
+	   //  // console.log(startmin);
+
+	   //  var endhour = $('select#reservation_end_time_4i').val();
+	   //  // console.log(endhour);
+
+
+	   //  var endmin = $('select#reservation_end_time_5i').val();
+	   //  // console.log(endmin);
+
+	   //  var totalhour = (((endhour + endmin) - (starthour + startmin))/60)*("<%= @listing.rateperhour %>");
+	    
+	   //  // console.log((endhour + endmin));
+	   //  // console.log(totalhour);
+
+    // });
+    
+  });
+
+
+
+</script>
+

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  status: MyString
+  startdate: 2017-07-18 13:46:22
+  endate: 2017-07-18 13:46:22
+  numberofguests: 1
+  needcaptain: MyString
+
+two:
+  status: MyString
+  startdate: 2017-07-18 13:46:22
+  endate: 2017-07-18 13:46:22
+  numberofguests: 1
+  needcaptain: MyString
