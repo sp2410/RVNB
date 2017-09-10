@@ -35,8 +35,10 @@ class ReservationsController < ApplicationController
         send_email(@listing, "RVNB: Reservation Approved", "Hi! Your reservation on #{@listing.vehicletype}, id number #{@listing.id} for #{@reservation.booking_date} was accepted by the owner. Our team wil send the invoice for payment on your email shortly", ["#{@reservationowner.email}"])
         send_email(@listing, "RVNB: Send the invoice for payment, Reservation Id: #{@reservation.id} Approved", "Hi! Owner accepted the reservation on this #{@listing.vehicletype}, id number #{@listing.id}, reservation by #{@reservationowner.email}. Please review and send invoice for payment of #{@reservation.total_cost} and 10 percent to #{@reservationowner.email}", ["thedealerschoice@yahoo.com"])
 
+        if getpayment(@reservationowner)
+          send_text(getpayment(@reservationowner).contact_number, "Hi! Your reservation on #{@listing.vehicletype}, id number #{@listing.id} for #{@reservation.booking_date} was accepted by the owner. Our team wil send the invoice for payment on your email shortly")
+        end
         
-        send_text(getpayment(@reservationowner).contact_number, "Hi! Your reservation on #{@listing.vehicletype}, id number #{@listing.id} for #{@reservation.booking_date} was accepted by the owner. Our team wil send the invoice for payment on your email shortly")
 
       else
         format.html { render :edit }
@@ -72,8 +74,9 @@ class ReservationsController < ApplicationController
 
         send_email(@listing, "RVNB: Reservation Created on your #{@listing.vehicletype}", "Hi! A new reservation was made on your #{@listing.vehicletype}, id number #{@listing.id} title: #{@listing.title if @listing.title}. Please go to #{@listing.vehicletype} page to review", ["#{@listingowner.email}"])
 
-        send_text(getpayment(@listingowner).contact_number, "Hi! A new reservation was made on your #{@listing.vehicletype}, id number #{@listing.id} title: #{@listing.title if @listing.title}. Please go to #{@listing.vehicletype} page to review")
-
+        if getpayment(@listingowner)
+          send_text(getpayment(@listingowner).contact_number, "Hi! A new reservation was made on your #{@listing.vehicletype}, id number #{@listing.id} title: #{@listing.title if @listing.title}. Please go to #{@listing.vehicletype} page to review")
+        end
         
       else
         format.html { render :new }
@@ -113,7 +116,9 @@ class ReservationsController < ApplicationController
 
       send_email(@listing, "RVNB: Reservation Destroyed", "Hi! We are sorry. Your reservation on #{@listing.vehicletype}, id number #{@listing.id} for #{@reservation.booking_date} was destroyed. Please choose another #{@listing.vehicletype}", ["#{@reservationowner.email}"])
 
-      send_text(getpayment(@reservationowner).contact_number, "Hi! We are sorry. Your reservation on #{@listing.vehicletype}, id number #{@listing.id} for #{@reservation.booking_date} was destroyed. Please choose another #{@listing.vehicletype}")
+      if getpayment(@reservationowner)
+        send_text(getpayment(@reservationowner).contact_number, "Hi! We are sorry. Your reservation on #{@listing.vehicletype}, id number #{@listing.id} for #{@reservation.booking_date} was destroyed. Please choose another #{@listing.vehicletype}")
+      end        
 
     end
   end

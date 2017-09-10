@@ -55,6 +55,8 @@ module ApplicationHelper
 
     
 
+    
+
     def myreservationslistings(user)
       myreservations = Reservation.where('user_id = ?', user.id)
       p "reservation"
