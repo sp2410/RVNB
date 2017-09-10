@@ -88,20 +88,18 @@
 
                         <h4 class="row text-center" style = "color: #2a93d5;"><strong><%= i.title.upcase %></strong></h4>
 
-                                <div class="col-sm-12">
+                        <div class="col-sm-12">
                                   <p style ="margin: 1px;font-size: 20px; color: #7C064D;">From <span class="glyphicon glyphicon-usd" aria-hidden="true"></span><%= i.rateperhour %></p>
+                        </div>
+
+                        <div class="col-sm-12">
+                                  <p style ="margin: 1px;font-size: 12px; color:#e20049;">Location: <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span><%= i.city.capitalize %></p>
                                 </div>
                         
                         <div class="col-sm-12">
                           <p style ="margin: 0px;font-size: 10px;">Min. <%= i.rentalminimum %> hours - Year <%= i.year %> - Sleeps <%= i.sleeps %></p>
                           <!-- <p style ="margin: 0px;font-size: 10px;">Min. <%= i.rentalminimum %> days</p> -->
-
-                                        
-                          <%-if i["description"].length < 41 -%>     
-                            <!-- <p style ="margin: 0px;font-size: 10px; overflow-x:hidden;">Description: <%= i["description"].downcase[0..40] %></p>  -->
-                          <% else %>
-                            <!-- <p style ="margin: 0px;font-size: 10px; overflow-x:hidden;">Description: <%= i["description"].downcase[0..30] %>...</p>  -->
-                          <% end %>
+                                                                 
                         </div> 
                         </div>                  
                       </div>
@@ -114,7 +112,3 @@
     <% end %> 
 </div>
 
-<div style = "text-align: center;">
-  <%= will_paginate @listingsrvs, :style => "color: #3ddad7" %>
-
-</div>

@@ -21,10 +21,12 @@ class ListingsController < ApplicationController
     end
     
     #for ransack you use rails activerecord query methods on the result from ransack i.e. @search.result
-    @listingsboats = @listingssearch.where(:vehicletype => 'Boat').order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 30)
+    @listingsboats = @listingssearch.where(:vehicletype => 'Boat').order(sort_column + " " + sort_direction)
+    # .paginate(:page => params[:page], :per_page => 100)
 
     # @listingsrvs = Listing.search(params)
-    @listingsrvs = @listingssearch.where(:vehicletype => 'RV').order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 30)
+    @listingsrvs = @listingssearch.where(:vehicletype => 'RV').order(sort_column + " " + sort_direction)
+    # .paginate(:page => params[:page], :per_page => 100)
 
 
     # .page(params[:page]).per_page(4)    

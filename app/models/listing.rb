@@ -33,7 +33,6 @@ class Listing < ApplicationRecord
 	has_many :specks,  dependent: :destroy 
 	has_many :availabilities,  dependent: :destroy 
 
-	
 
 	def self.search(params)
 
@@ -44,7 +43,7 @@ class Listing < ApplicationRecord
 			if params[:startdate].present?
 				date = params[:startdate]
 				p "hey its date"
-				listingsids = Availability.where('startdate <= ?', date).where('enddate >= ?', date).pluck('listing_id')
+				listingsids = Listing.getavailability_ids(params)
 				products = Listing.where(id: listingsids)
 				# products = Listing.joins(:availabilities).where('availability.startdate <= ?', date).where('availability.enddate >= ?', date)
 			end
@@ -83,6 +82,14 @@ class Listing < ApplicationRecord
 		end
 
 			products		
+	end
+
+	#clearing dependency : Listing should not know what's in Availability
+
+	def self.getavailability_ids(params)
+		date = params[:startdate]
+		listingsids = Availability.where('startdate <= ?', date).where('enddate >= ?', date).pluck('listing_id')
+		return listingsids
 	end
 
 

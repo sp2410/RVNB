@@ -92,6 +92,10 @@
                                   <p style ="margin: 1px;font-size: 20px; color: #7C064D;">From <span class="glyphicon glyphicon-usd" aria-hidden="true"></span><%= i.rateperhour %></p>
                                 </div>
 
+                                 <div class="col-sm-12">
+                                  <p style ="margin: 1px;font-size: 12px; color:#e20049;">Location: <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span><%= i.city.capitalize %></p>
+                                </div>
+
                                 <div class="col-sm-12">
                                   <p style ="margin: 0px;font-size: 10px;">Min. <%= i.rentalminimum %> hours - Year <%= i.year %> - Sleeps <%= i.sleeps %></p>                          
                                 </div> 
@@ -156,7 +160,3 @@
     <% end %> 
 </div>
 
-<div style = "text-align: center;">
-  <%= will_paginate @listingsboats, :style => "color: #3ddad7" %>
-
-</div>
