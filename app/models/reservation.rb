@@ -44,10 +44,4 @@ class Reservation < ApplicationRecord
     		# return true
 		end
 
-        # def ask_for_review
-                        
-        # end
-
-
-
 end
