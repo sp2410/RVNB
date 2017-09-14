@@ -4,6 +4,7 @@ class Availability < ApplicationRecord
 
 	def start_time
         self.startdate ##Where 'start' is a attribute of type 'Date' accessible through MyModel's relationship
+        
     end
 
     def end_time
@@ -18,8 +19,7 @@ class Availability < ApplicationRecord
 	    	availability.reservations.each do |i|	    			
 	    		if (Availability.reservation_booking_date(i) == date) and (Availability.reservation_status(i) == "approved")	    			
                     p "booked!\n"
-	    			return true
-                    
+	    			return true                    
 	    		end
 	    	end
 	    end
@@ -40,6 +40,16 @@ class Availability < ApplicationRecord
     def self.reservation_status(reservation)
     	reservation.status
     end
+
+
+    #clearing dependency : Listing should not know what's in Availability
+
+    def self.getavailability_ids(params)
+        date = params[:startdate]
+        listingsids = Availability.where('startdate <= ?', date).where('enddate >= ?', date).pluck('listing_id')
+        return listingsids
+    end
+
 
 
 end

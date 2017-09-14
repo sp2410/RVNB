@@ -1,25 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
+
     <title>RVNB</title>        
+
     <%= favicon_link_tag 'https://s3-us-west-2.amazonaws.com/wacbacassetsdonttouch/wacbacassets/logo1.ico' %>
 
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js" >
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js" >    
 
     <link href="https://www.w3schools.com/w3css/4/w3.css" rel="stylesheet"  lazyload>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"  lazyload>  
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"  lazyload>    
-
-    <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Great+Vibes|Baloo+Chettan|Damion|Heebo|Kaushan+Script|Ranga|Lobster|Raleway:400,800|Playfair+Display+SC|Anton" rel="stylesheet" lazyload>
+    <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Great+Vibes|Baloo+Chettan|Damion|Heebo|Kaushan+Script|Ranga|Lobster|Raleway:400,800|Playfair+Display+SC|Anton" rel="stylesheet" lazyload>    
     
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" async></script>
-    
-
-    
+        
     <meta name="description" content="Unforgettable vacations start with Rvnb. Find RVs and Boats nearby or in faraway place, rent now and have the perfect weekend getaway">  
 
     <meta content="RVNB" property="og:title" />          
@@ -44,13 +41,13 @@
       overflow: hidden;    
     }       
   </style>
- 
 
   </head>
 
   <body>
 
 <%= slide_down_alerts %>
+
 <p id="notice" style = "background-color: #e20049; padding: 0px; color: white; margin: 0px;"><%= notice %></p>
 <%= render 'layouts/navbar' %>
 
@@ -58,13 +55,13 @@
     
 <%= render 'layouts/footer' %>  
 
-<script defer
+  <script defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2alMtLSazyRllBkXIJfitgKwvc9zxYTo&callback=initMap">
   </script>
 
   <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/OverlappingMarkerSpiderfier/1.0.3/oms.min.js"></script>
-
+    src="https://cdnjs.cloudflare.com/ajax/libs/OverlappingMarkerSpiderfier/1.0.3/oms.min.js">
+  </script>
 
   </body>
 </html>

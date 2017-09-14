@@ -53,9 +53,7 @@ module ApplicationHelper
       @payment == nil ? false : @payment        
     end
 
-    
-
-    
+        
 
     def myreservationslistings(user)
       myreservations = Reservation.where('user_id = ?', user.id)
