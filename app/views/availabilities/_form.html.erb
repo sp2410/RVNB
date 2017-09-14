@@ -1,11 +1,11 @@
 <%= bootstrap_form_for [@listing, @availability]  do |f| %>   
   
   <div class="field">    
-    <%= f.date_field :startdate, id: :availability_startdate %>
+    <%= f.date_field :startdate, id: :availability_startdate, :label => "Start Date" %>
   </div>
 
   <div class="field">    
-    <%= f.date_field :enddate, id: :availability_enddate %>
+    <%= f.date_field :enddate, id: :availability_enddate, :label => "End Date" %>
   </div>
 
   <div class="actions">

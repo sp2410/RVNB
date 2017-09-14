@@ -63,7 +63,7 @@ class ListingsController < ApplicationController
       if @listing.save
 
         # format.html { redirect_to @listing, notice: 'Listing was successfully created.' }
-        format.html { redirect_to new_listing_availability_path(@listing), notice: 'Step 2: Listing was successfully created. Please add atleast one availability duration.' }
+        format.html { redirect_to new_listing_availability_path(@listing), notice: 'Step 2: Listing was successfully created. Please add at least one start date and a later end date' }
         format.json { render :show, status: :created, location: @listing }
       else
         format.html { render :new }
