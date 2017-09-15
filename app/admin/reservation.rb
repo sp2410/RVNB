@@ -81,7 +81,7 @@ member_action :markasbilled, method: :get do
         @notification.save!        
 
         send_email_with_reservation_details(resource, "RVNB: Reservation peyment invoice sent", "RVNB: Hi! The reservation id number #{resource.id} for #{resource.booking_date} was accepted. We have sent you an invoice, please check your email inbox for the email id you used to login", ["#{@user.email}"])        
-        if getpayment(@user)
+        if (getpayment(@user) == true)
             send_text(getpayment(@user).contact_number, "RVNB: Hi! The reservation id number #{resource.id} for #{resource.booking_date} was accepted. We have sent you an invoice, please check your email inbox for the email id you used to login")
         end
     else
@@ -104,7 +104,8 @@ member_action :markaspaid , method: :get do
 
         send_email_with_reservation_details(resource, "RVNB: Your payment was accepted", "Hi! The payment on reservation id #{resource.id} for #{resource.booking_date} was accepted. We have made your contact informations available to #{@user.email}. Please get in touch or wait from the renter to contact you", ["#{get_reservation_listing_owner(resource).email}"])        
         send_email_with_reservation_details(resource, "RVNB: Your payment was accepted", "Hi! The payment on reservation id #{resource.id} for #{resource.booking_date} was accepted. Here are the owner and pickup details: Contact: #{get_owners_contact(resource)} \n #{get_pickup_address(resource)}", ["#{@user.email}"])        
-        if getpayment(@user)
+
+        if (getpayment(@user) == true)
             send_text(getpayment(@user).contact_number, "RVNB: Hi! The payment on reservation id #{resource.id} for #{resource.booking_date} was accepted. Here are the owner and pickup details: Contact: #{get_owners_contact(resource)} \n #{get_pickup_address(resource)}")
         end
 
@@ -125,7 +126,8 @@ member_action :markasonhold, method: :get do
         @notification.save!       
 
         send_email_with_reservation_details(resource, "RVNB: Reservation is on hold", "The reservation id number #{resource.id} for #{resource.booking_date} has been put on hold, please contact us to resolve the situation", ["#{@user.email}"])         
-        if getpayment(@user)
+
+        if (getpayment(@user) == true)
             send_text(getpayment(@user).contact_number, "The reservation id number #{resource.id} for #{resource.booking_date} has been put on hold, please contact us to resolve the situation")
         end
     else
@@ -143,8 +145,8 @@ member_action :askforreview, method: :get do
         if @notification.save! 
             send_email_with_reservation_details(resource, "RVNB: Need reviews for your last trip. Owner is waiting for your reviews", "We hope you enjoyed the reservation id number #{resource.id} for #{resource.booking_date}. For us you are a very important customer and we would request your reviews for the trip. Please go to the listing page and submit a review. We will release money to the owner only when you are satisfied and had a great experience. We will judge it from your ratings", ["#{@reserver.email}"])         
             redirect_to admin_reservations_path, notice: "Email for review has been sent"
-            if getpayment(@user)
-                send_text(getpayment(@user).contact_number, "We hope you enjoyed the reservation id number #{resource.id} for #{resource.booking_date}. For us you are a very important customer and we would request your reviews for the trip. Please go to the listing page and submit a review. We will release money to the owner only when you are satisfied and had a great experience. We will judge it from your ratings")
+            if (getpayment(@reserver) == true)
+                send_text(getpayment(@reserver).contact_number, "We hope you enjoyed the reservation id number #{resource.id} for #{resource.booking_date}. For us you are a very important customer and we would request your reviews for the trip. Please go to the listing page and submit a review. We will release money to the owner only when you are satisfied and had a great experience. We will judge it from your ratings")
             end
         else
             redirect_to admin_reservations_path, notice: "Oops! Error while changing sending review request, please call the renter and ask for reviews"            
