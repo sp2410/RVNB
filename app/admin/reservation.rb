@@ -33,7 +33,7 @@ controller do
     def get_owners_contact(reservation)
         user = get_reservation_listing_owner(reservation)
         contact = getpayment(user).contact_number
-        contact.present? ? contact : get_reservation_listing_owner(reservation).email
+        contact == false ? get_reservation_listing_owner(reservation).email : contact 
     end
 
     def get_pickup_address(reservation)
@@ -106,6 +106,7 @@ member_action :markaspaid , method: :get do
         send_email_with_reservation_details(resource, "RVNB: Your payment was accepted", "Hi! The payment on reservation id #{resource.id} for #{resource.booking_date} was accepted. Here are the owner and pickup details: Contact: #{get_owners_contact(resource)} \n #{get_pickup_address(resource)}", ["#{@user.email}"])        
 
         if (getpayment(@user) == true)
+            p "here"
             send_text(getpayment(@user).contact_number, "RVNB: Hi! The payment on reservation id #{resource.id} for #{resource.booking_date} was accepted. Here are the owner and pickup details: Contact: #{get_owners_contact(resource)} \n #{get_pickup_address(resource)}")
         end
 
@@ -128,6 +129,7 @@ member_action :markasonhold, method: :get do
         send_email_with_reservation_details(resource, "RVNB: Reservation is on hold", "The reservation id number #{resource.id} for #{resource.booking_date} has been put on hold, please contact us to resolve the situation", ["#{@user.email}"])         
 
         if (getpayment(@user) == true)
+
             send_text(getpayment(@user).contact_number, "The reservation id number #{resource.id} for #{resource.booking_date} has been put on hold, please contact us to resolve the situation")
         end
     else
@@ -145,6 +147,7 @@ member_action :askforreview, method: :get do
         if @notification.save! 
             send_email_with_reservation_details(resource, "RVNB: Need reviews for your last trip. Owner is waiting for your reviews", "We hope you enjoyed the reservation id number #{resource.id} for #{resource.booking_date}. For us you are a very important customer and we would request your reviews for the trip. Please go to the listing page and submit a review. We will release money to the owner only when you are satisfied and had a great experience. We will judge it from your ratings", ["#{@reserver.email}"])         
             redirect_to admin_reservations_path, notice: "Email for review has been sent"
+
             if (getpayment(@reserver) == true)
                 send_text(getpayment(@reserver).contact_number, "We hope you enjoyed the reservation id number #{resource.id} for #{resource.booking_date}. For us you are a very important customer and we would request your reviews for the trip. Please go to the listing page and submit a review. We will release money to the owner only when you are satisfied and had a great experience. We will judge it from your ratings")
             end
