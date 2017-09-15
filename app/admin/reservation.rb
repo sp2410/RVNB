@@ -20,7 +20,7 @@ controller do
     end
 
      def getpayment(user)
-      @payment = Payment.where('user_id = ?', current_user.id).first
+      @payment = Payment.where('user_id = ?', user.id).first
       @payment == nil ? false : @payment        
     end
 
@@ -31,7 +31,6 @@ controller do
    
 
     def get_owners_contact(reservation)
-
         user = get_reservation_listing_owner(reservation)
         contact = getpayment(user).contact_number
         contact.present? ? contact : get_reservation_listing_owner(reservation).email
@@ -44,11 +43,13 @@ controller do
         
 
      def get_reservation_listing_owner(reservation)
-        @user = User.find_by_id(Listing.find_by_id(reservation.listing_id).user_id)
+        user = User.find_by_id(Listing.find_by_id(reservation.listing_id).user_id)
+        return user
     end
 
      def get_reservation_listing(reservation)
         @listing = Listing.find_by_id(reservation.listing_id)
+        return @listing
     end
 
 
