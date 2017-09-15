@@ -31,9 +31,8 @@ controller do
    
 
     def get_owners_contact(reservation)
-        user = get_reservation_listing_owner(reservation)
-        contact = getpayment(user).contact_number
-        contact == false ? get_reservation_listing_owner(reservation).email : contact 
+        user = get_reservation_listing_owner(reservation)        
+        getpayment(user) == false ? get_reservation_listing_owner(reservation).email : getpayment(user)
     end
 
     def get_pickup_address(reservation)
