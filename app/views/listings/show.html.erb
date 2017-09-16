@@ -3,31 +3,31 @@
     <div class="slideshow-container" id = "showcase" >
 
                           <%- if @listing.imagefront.present? -%>
-                            <div class="mySlides" style = "height: 40em;">                          
+                            <div class="mySlides" style = "height: 50em;">                          
                               <img src=<%= @listing.imagefront.url if @listing.imagefront.present? %>>
                             </div>
                           <% end %>
 
                           <%- if @listing.imageback.present? -%>
-                            <div class="mySlides"  style = "height: 40em;">
+                            <div class="mySlides"  style = "height: 50em;">
                               <img src=<%= @listing.imageback.url if @listing.imageback.present? %> style="width:100%">
                             </div>
                           <% end %>
 
                           <%- if @listing.imageleft.present? -%>  
-                              <div class="mySlides"  style = "height: 40em;">
+                              <div class="mySlides"  style = "height: 50em;">
                               <img src=<%= @listing.imageleft.url if @listing.imageleft.present? %> style="width:100%">
                             </div>
                           <% end %>
 
                           <%- if @listing.imageright.present? -%>  
-                            <div class="mySlides"  style = "height: 40em;">
+                            <div class="mySlides"  style = "height: 50em;">
                               <img src=<%= @listing.imageright.url if @listing.imageright.present? %> style="width:100%">
                             </div>
                           <% end %>
 
                           <%- if @listing.interiorfront.present? -%>  
-                              <div class="mySlides"  style = "height: 40em;">
+                              <div class="mySlides"  style = "height: 50em;">
                               <img src=<%= @listing.interiorfront.url if @listing.interiorfront.present? %> style="width:100%">
                             </div>
                           <% end %>
