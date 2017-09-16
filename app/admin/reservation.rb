@@ -14,7 +14,7 @@ controller do
 
     def send_email_with_reservation_details(reservation, subject, message, user)
       from = 'sales@tdcdigitalmedia.com'          
-      content = "<html><head><style type='text/css'>body,html,.body{background:#D3D3D3!important;}</style></head><body><container><spacer size='16'></spacer><row><columns><center><img src=#{Listing.find_by_id(reservation.listing_id).imagefront}></center></columns></row><row><columns large='8'><center><h2>RVNB</h2></center></columns></row><row><columns large='6'><center><h4>Hi! Its RVNB team!</h4><br><p>#{message}</p><br><p>Follow: https://rvnb.herokuapp.com/listings/#{reservation.listing_id} to view</p><center></columns><columns large='6'><br><p>Phone: +1 866-338-7870 Line 5</p><br><p>Email:sales@tdcdigitalmedia.com</p></columns><columns large='4'><img class='small-float-center' width='100px' height='100px' src='//s3-us-west-2.amazonaws.com/rvnb/rvnblogo.jpg' alt=''></columns></row><row></row></container><body></html>"
+      content = "<html><head><style type='text/css'>body,html,.body{background:#D3D3D3!important;}</style></head><body><container><spacer size='16'></spacer><row><columns><center><img class='small-float-center' width='500px' height='300px' src=#{Listing.find_by_id(reservation.listing_id).imagefront}></center></columns></row><row><columns large='8'><center><h2>RVNB</h2></center></columns></row><row><columns large='6'><center><h4>Hi! Its RVNB team!</h4><br><p>#{message}</p><br><p>Follow: https://rvnb.herokuapp.com/listings/#{reservation.listing_id} to view</p><center></columns><columns large='6'><br><p>Phone: +1 866-338-7870 Line 5</p><br><p>Email:sales@tdcdigitalmedia.com</p></columns><columns large='4'><img class='small-float-center' width='100px' height='100px' src='//s3-us-west-2.amazonaws.com/rvnb/rvnblogo.jpg' alt=''></columns></row><row></row></container><body></html>"
       notifier = EmailNotifier.new(from, user, subject, content)
       notifier.send
     end
@@ -79,7 +79,7 @@ member_action :markasbilled, method: :get do
         @notification = Notification.new send_to: "#{@user.email}" , message: "Hi! The reservation id number #{resource.id} for #{resource.booking_date} was accepted. We have sent you an invoice, please check you email inbox"
         @notification.save!        
 
-        send_email_with_reservation_details(resource, "RVNB: Reservation peyment invoice sent", "RVNB: Hi! The reservation id number #{resource.id} for #{resource.booking_date} was accepted. We have sent you an invoice, please check your email inbox for the email id you used to login", ["#{@user.email}"])        
+        send_email_with_reservation_details(resource, "RVNB: Reservation payment invoice sent", "RVNB: Hi! The reservation id number #{resource.id} for #{resource.booking_date} was accepted. We have sent you an invoice, please check your email inbox for the email id you used to login", ["#{@user.email}"])        
         if (getpayment(@user) == true)
             send_text(getpayment(@user).contact_number, "RVNB: Hi! The reservation id number #{resource.id} for #{resource.booking_date} was accepted. We have sent you an invoice, please check your email inbox for the email id you used to login")
         end
