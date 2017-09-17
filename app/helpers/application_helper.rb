@@ -49,7 +49,7 @@ module ApplicationHelper
     end
 
     def getpayment(user)
-      @payment = Payment.where('user_id = ?', current_user.id).first
+      @payment = Payment.where('user_id = ?', user.id).first
       @payment == nil ? false : @payment        
     end
 
